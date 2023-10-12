@@ -1,7 +1,6 @@
 # Building Permit Monitor for Cityworks
 
-A simple system tray/notification area application that monitors our Cityworks database for newly issued building permits.  Building permit information needs to be tracked in a spreadsheet as well as mapped in our GIS, this application streamlines the process by pulling the data from our Cityworks API, parsing out what is needed, displaying a validation window for user verification, then inserting the validated data into the tracking spreadsheet.  The database is checked every 30 minutes for updates, toast notifications inform of work to be done, clicking the notification triggers data retrieval and parsing.  This is my first larger project in C#.
-
+A simple system tray/notification area application that monitors our Cityworks database for newly issued building permits.  Building permit information needs to be tracked in a spreadsheet as well as mapped in our GIS, this application streamlines the process by pulling the data from our Cityworks API, parsing out what is needed, displaying a validation window for user verification, then inserting the validated data into the tracking spreadsheet.  The database is checked every 30 minutes for updates, toast notifications inform of work to be done, clicking the notification triggers data retrieval and parsing.
 ## External Libraries
 
 ### Newtonsoft.Json
