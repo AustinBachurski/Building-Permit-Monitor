@@ -6,17 +6,8 @@ using Building_Permit_Monitor.InfoWindow;
 
 namespace Building_Permit_Monitor.CityworksAPI
 {
-    /// <summary>
-    /// Provides access to the live production instance of Cityworks.
-    /// </summary>
     public class LiveCityworksAPI : ICityworksAPI
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="LiveCityworksAPI"/> with the provided URL.
-        /// </summary>
-        /// <param name="URL">URL to your Cityworks site, "/Cityworks/" suffix expected.
-        /// Example: "https://cityworks.ci.cityname.state.us/Cityworks/" </param>
-        ///
         public LiveCityworksAPI(string URL)  // https://cityworks.ci.kalispell.mt.us/Cityworks/
         {
             baseURL = URL;

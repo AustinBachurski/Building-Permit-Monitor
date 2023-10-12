@@ -1,6 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using Building_Permit_Monitor.ExcelAccess;
-using Building_Permit_Monitor.Interfaces;
+using Building_Permit_Monitor.Cityworks;
 using Building_Permit_Monitor.JSON_Objects;
 using Building_Permit_Monitor.DataValidation;
 using Building_Permit_Monitor.TrayApplication;
@@ -11,18 +11,18 @@ namespace Building_Permit_Monitor.Permit_Monitor
     public class PermitMonitor
     {
         bool _abort = false;
-        ICityworksData _cityworks;
+        CityworksData _cityworks;
         string _employeeName;
         Excel _excel;
         int _savedSearchID;
         List<SpreadsheetRow> _unmappedPermits;
         
-        public PermitMonitor(ICityworksData cityworks, Excel excel)
+        public PermitMonitor(CityworksData cityworks, Excel excel)
         {
             _cityworks = cityworks;
-            _employeeName = "BACHURSKI, AUSTIN "; // TODO - Store on exit.
+            _employeeName = "BACHURSKI, AUSTIN ";
             _excel = excel;
-            _savedSearchID = 1041; // TODO - Store this on exit.
+            _savedSearchID = 1041;
             _unmappedPermits = new List<SpreadsheetRow>();
         }
 
@@ -89,10 +89,10 @@ namespace Building_Permit_Monitor.Permit_Monitor
             if (!_abort)
             {
                 _excel.PushRowsToSpreadsheet(_unmappedPermits);
-                SendToast(ToastClicked.NoAction, "Spreadsheet updated.");
+                SendToast(OnToastClick.NoAction, "Spreadsheet updated.");
                 return;
             }
-            SendToast(ToastClicked.NoAction, "Update aborted.");
+            SendToast(OnToastClick.NoAction, "Update aborted.");
         }
 
         private async Task<List<SpreadsheetRow>> CheckForUnmappedPermits()

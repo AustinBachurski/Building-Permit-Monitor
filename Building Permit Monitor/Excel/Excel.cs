@@ -49,37 +49,20 @@ namespace Building_Permit_Monitor.ExcelAccess
             // Sort by DateIssued, newest first.
             rows.Sort((a, b) => b.DateIssued.CompareTo(a.DateIssued));
 
-            try
+            foreach (SpreadsheetRow row in rows)
             {
-                foreach (SpreadsheetRow row in rows)
-                {
-                    xlWorksheet.Cells[insertionRow, Column.Permit_Number] = row.PermitNumber;
-                    xlWorksheet.Cells[insertionRow, Column.Building_Use] = row.BuildingUse;
-                    xlWorksheet.Cells[insertionRow, Column.Number_of_Units] = int.Parse(row.NumberOfUnits);
-                    xlWorksheet.Cells[insertionRow, Column.Class_of_Work] = row.ClassOfWork;
-                    xlWorksheet.Cells[insertionRow, Column.Date_Issued] = row.DateIssued;
-                    xlWorksheet.Cells[insertionRow, Column.Project_Value] = row.ProjectValue;
-                    xlWorksheet.Cells[insertionRow, Column.Address] = row.Address;
-                    xlWorksheet.Cells[insertionRow, Column.Notes] = row.Notes;
-                    xlWorksheet.Cells[insertionRow, Column.CoordinateX] = row.CoordinateX;
-                    xlWorksheet.Cells[insertionRow, Column.CoordinateY] = row.CoordinateY;
+                xlWorksheet.Cells[insertionRow, Column.Permit_Number] = row.PermitNumber;
+                xlWorksheet.Cells[insertionRow, Column.Building_Use] = row.BuildingUse;
+                xlWorksheet.Cells[insertionRow, Column.Number_of_Units] = int.Parse(row.NumberOfUnits);
+                xlWorksheet.Cells[insertionRow, Column.Class_of_Work] = row.ClassOfWork;
+                xlWorksheet.Cells[insertionRow, Column.Date_Issued] = row.DateIssued;
+                xlWorksheet.Cells[insertionRow, Column.Project_Value] = row.ProjectValue;
+                xlWorksheet.Cells[insertionRow, Column.Address] = row.Address;
+                xlWorksheet.Cells[insertionRow, Column.Notes] = row.Notes;
+                xlWorksheet.Cells[insertionRow, Column.CoordinateX] = row.CoordinateX;
+                xlWorksheet.Cells[insertionRow, Column.CoordinateY] = row.CoordinateY;
 
-                    ++insertionRow;
-                }
-            }
-            catch(FormatException parseError)
-            {
-                // TODO - Update to output toast message post UI addition.
-                Console.WriteLine($"Error parsing Number of Units to int: {parseError}");
-
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject(xlRange);
-                Marshal.ReleaseComObject(xlWorksheet);
-                xlWorkbook.Close();
-                Marshal.ReleaseComObject(xlWorkbook);
-                xlApp.Quit();
-                Marshal.ReleaseComObject(xlApp);
+                ++insertionRow;
             }
 
             xlWorkbook.Save();

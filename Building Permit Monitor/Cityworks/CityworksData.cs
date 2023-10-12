@@ -6,7 +6,7 @@ using Building_Permit_Monitor.InfoWindow;
 
 namespace Building_Permit_Monitor.Cityworks
 {
-    public class CityworksData : ICityworksData
+    public class CityworksData
     {
         ICityworksAPI _cityworks;
 
@@ -154,7 +154,7 @@ namespace Building_Permit_Monitor.Cityworks
             return;
         }
 
-        private CaseData DefaultValues(string groupDesc) // Document - may throw.
+        private CaseData DefaultValues(string groupDesc)
         {
             switch(groupDesc)
             {
@@ -198,11 +198,8 @@ namespace Building_Permit_Monitor.Cityworks
             CaseDataDetails classOfWorkDetails = await GetCaseDataDetails(dataGroups.ClassOfWorkID, GroupDesc.ClassOfWork);
             CaseDataDetails projectValueDetails = await GetCaseDataDetails(dataGroups.ProjectValueID, GroupDesc.ProjectValuation);
 
-            // The specific data is then shoved into the row object.
+            // The data is then shoved into the row object.
             row.BuildingUse = buildingUseDetails.BuildingUse;
-            // TODO - String to int conversion should happen just prior Excel insertion?
-            // Maybe pop up a window to confirm values in row prior to pushing to sheet.
-            // Perform int conversion as it's shoved into the spreadsheet?
             row.NumberOfUnits = numbeOfUnitsDetails.NumberOfUnits;
             row.ClassOfWork = classOfWorkDetails.ClassOfWork;
             row.ProjectValue = projectValueDetails.ProjectValue;

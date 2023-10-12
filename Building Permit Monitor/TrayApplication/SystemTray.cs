@@ -43,7 +43,7 @@ namespace Building_Permit_Monitor
 
                 if (count > 0)
                 {
-                    SendToast(ToastClicked.UpdateSpreadsheet,
+                    SendToast(OnToastClick.UpdateSpreadsheet,
                         (count == 1 ? $"Found {count} new permit." : $"Found {count} new permits."));
                 }
 
@@ -61,7 +61,7 @@ namespace Building_Permit_Monitor
 
         private void HandleToastNotificationAction(string toastArgument)
         {
-            if (toastArgument == ToastClicked.UpdateSpreadsheet)
+            if (toastArgument == OnToastClick.UpdateSpreadsheet)
             {
                 _monitor.DoWork().ConfigureAwait(false);
             }
@@ -75,12 +75,12 @@ namespace Building_Permit_Monitor
 
             if (count > 0)
             {
-                SendToast(ToastClicked.UpdateSpreadsheet,
+                SendToast(OnToastClick.UpdateSpreadsheet,
                     (count == 1 ? $"Found {count} new permit." : $"Found {count} new permits."));
             }
             else
             {
-                SendToast(ToastClicked.NoAction, "Nothing to do...");
+                SendToast(OnToastClick.NoAction, "Nothing to do...");
             }
         }
 

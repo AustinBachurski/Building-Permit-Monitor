@@ -9,8 +9,6 @@
         public List<Search> Searches { get { return Value; } }
         public int StatusCode { get { return Status; } }
         public string StatusMessage { get { return Message; } }
-
-
     }
 
     public class Search

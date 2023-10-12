@@ -26,7 +26,7 @@ namespace Building_Permit_Monitor.SearchIdWindow
                 Close();
                 return;
             }
-            SendToast(ToastClicked.NoAction, $"Invalid Entry: {textBox_newID.Text}");
+            SendToast(OnToastClick.NoAction, $"Invalid Entry: {textBox_newID.Text}");
             return;
         }
 
@@ -55,7 +55,7 @@ namespace Building_Permit_Monitor.SearchIdWindow
                     Close();
                     return;
                 }
-                SendToast(ToastClicked.NoAction, $"Invalid Entry: {textBox_newID.Text}");
+                SendToast(OnToastClick.NoAction, $"Invalid Entry: {textBox_newID.Text}");
                 return;
             }
         }

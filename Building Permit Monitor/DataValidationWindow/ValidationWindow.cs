@@ -131,7 +131,7 @@ namespace Building_Permit_Monitor.DataValidation
                 }
                 else
                 {
-                    SendToast(ToastClicked.NoAction, $"Value entered for Number of Units was invalid: {textBox_NumberOfUnits.Text}");
+                    SendToast(OnToastClick.NoAction, $"Value entered for Number of Units was invalid: {textBox_NumberOfUnits.Text}");
                     return;
                 }
             }
@@ -149,7 +149,7 @@ namespace Building_Permit_Monitor.DataValidation
                 }
                 else
                 {
-                    SendToast(ToastClicked.NoAction, $"Value entered for X was invalid: {textBox_CoordinateX.Text}");
+                    SendToast(OnToastClick.NoAction, $"Value entered for X was invalid: {textBox_CoordinateX.Text}");
                     return;
                 }
             }
@@ -162,7 +162,7 @@ namespace Building_Permit_Monitor.DataValidation
                 }
                 else
                 {
-                    SendToast(ToastClicked.NoAction, $"Value entered for Y was invalid: {textBox_CoordinateX.Text}");
+                    SendToast(OnToastClick.NoAction, $"Value entered for Y was invalid: {textBox_CoordinateX.Text}");
                     return;
                 }
             }
