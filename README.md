@@ -24,8 +24,13 @@ When the tool is opened, a system tray/notification area icon is displayed, the 
 
 ## Image Gallery
 
-|Right Click Menu|Permit Found Notification|Data Validation Window|
-|:-:|:-:|:-:|
-|![right click menu](screenshots/RightClick.png) |![permit found](screenshots/PermitFound.png)|![validation](screenshots/Validation.png)
-|<b>Spreadsheet Updated Notification</b>|<b>Spreadsheet Values</b>|<b>No Permits to Map Notification</b>|
-|![updated](screenshots/SpreadsheetUpdated.png) |![spreadsheet](screenshots/SpreadsheetValues.png)|![nothing to do](screenshots/NothingToDo.png)
+
+|Right Click Menu|Permit Found Notification|
+|:-:|:-:|
+|![right click menu](screenshots/RightClick.png) |![permit found](screenshots/PermitFound.png)
+|<b>Spreadsheet Updated Notification</b>|<b>Spreadsheet Values</b>|
+|![validation](screenshots/Validation.png)|![updated](screenshots/SpreadsheetUpdated.png)
+|<b>Spreadsheet Values</b>|<b>No Permits to Map</b>
+|![spreadsheet](screenshots/SpreadsheetValues.png)|![nothing to do](screenshots/NothingToDo.png)
+
+
