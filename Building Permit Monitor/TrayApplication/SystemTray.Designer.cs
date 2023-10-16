@@ -58,21 +58,21 @@
             Menu_CheckNow.Name = "Menu_CheckNow";
             Menu_CheckNow.Size = new Size(283, 32);
             Menu_CheckNow.Text = "Check Now";
-            Menu_CheckNow.Click += MenuItemClicked_CheckNow;
+            Menu_CheckNow.Click += MenuItemClicked_CheckNowAsync;
             // 
             // Menu_DisplaySavedSearchIDs
             // 
             Menu_DisplaySavedSearchIDs.Name = "Menu_DisplaySavedSearchIDs";
             Menu_DisplaySavedSearchIDs.Size = new Size(283, 32);
             Menu_DisplaySavedSearchIDs.Text = "Display Saved Search IDs";
-            Menu_DisplaySavedSearchIDs.Click += MenuItemClicked_DisplaySavedSearchID;
+            Menu_DisplaySavedSearchIDs.Click += MenuItemClicked_DisplaySavedSearchIdAsync;
             // 
             // Menu_ChangeSavedSearchID
             // 
             Menu_ChangeSavedSearchID.Name = "Menu_ChangeSavedSearchID";
             Menu_ChangeSavedSearchID.Size = new Size(283, 32);
             Menu_ChangeSavedSearchID.Text = "Change Search ID";
-            Menu_ChangeSavedSearchID.Click += MenuItemClicked_ChangeSearchID;
+            Menu_ChangeSavedSearchID.Click += MenuItemClicked_ChangeSearchId;
             // 
             // Menu_Exit
             // 

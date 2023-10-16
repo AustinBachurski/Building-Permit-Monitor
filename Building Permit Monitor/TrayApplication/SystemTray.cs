@@ -30,16 +30,16 @@ namespace Building_Permit_Monitor
                 HandleToastNotificationAction(toastArgs.Argument);
             };
 
-            BeginMonitoring().ConfigureAwait(false);
+            BeginMonitoringAsync().ConfigureAwait(false);
         }
 
-        public async Task BeginMonitoring()
+        public async Task BeginMonitoringAsync()
         {
             int thirtyMinutes = 1800000;
 
             while (true)
             {
-                int count = await _monitor.CheckForWorkToDo();
+                int count = await _monitor.CheckForWorkToDoAsync();
 
                 if (count > 0)
                 {
@@ -63,15 +63,15 @@ namespace Building_Permit_Monitor
         {
             if (toastArgument == OnToastClick.UpdateSpreadsheet)
             {
-                _monitor.DoWork().ConfigureAwait(false);
+                _monitor.DoWorkAsync().ConfigureAwait(false);
             }
 
             ToastNotificationManagerCompat.History.Clear();
         }
 
-        private async void MenuItemClicked_CheckNow(object sender, EventArgs e)
+        private async void MenuItemClicked_CheckNowAsync(object sender, EventArgs e)
         {
-            int count = await _monitor.CheckForWorkToDo();
+            int count = await _monitor.CheckForWorkToDoAsync();
 
             if (count > 0)
             {
@@ -84,12 +84,12 @@ namespace Building_Permit_Monitor
             }
         }
 
-        private async void MenuItemClicked_DisplaySavedSearchID(object sender, EventArgs e)
+        private async void MenuItemClicked_DisplaySavedSearchIdAsync(object sender, EventArgs e)
         {
-            await _monitor.DisplaySavedSearchesForUser();
+            await _monitor.DisplaySavedSearchesForUserAsync();
         }
 
-        private void MenuItemClicked_ChangeSearchID(object sender, EventArgs e)
+        private void MenuItemClicked_ChangeSearchId(object sender, EventArgs e)
         {
             Thread showSearch = new Thread(() =>
             { Application.Run(new SearchID(_monitor, _monitor.SearchID)); });

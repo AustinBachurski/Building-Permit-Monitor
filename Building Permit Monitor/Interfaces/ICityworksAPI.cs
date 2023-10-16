@@ -2,9 +2,9 @@
 {
     public interface ICityworksAPI
     {
-        public Task<string> RetrieveCaseDataDetailFromServer(int CaDataGroupId);
-        public Task<string> RetrieveCaseDataGroupFromServer(int CaObjId);
-        public Task<string> RetrieveSavedSearchesFromServer();
-        public Task<string> RetrieveSearchResultsFromServer(int searchIdNumber);
+        public Task<string> RetrieveCaseDataDetailFromServerAsync(int CaDataGroupId);
+        public Task<string> RetrieveCaseDataGroupFromServerAsync(int CaObjId);
+        public Task<string> RetrieveSavedSearchesFromServerAsync();
+        public Task<string> RetrieveSearchResultsFromServerAsync(int searchIdNumber);
     }
 }

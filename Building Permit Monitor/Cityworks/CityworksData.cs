@@ -15,9 +15,9 @@ namespace Building_Permit_Monitor.Cityworks
             _cityworks = cityworksAPI; 
         }
 
-       public async Task<CaseDataDetails> GetCaseDataDetails(int CaDataGroupId, string expectedGroupDesc)
+       public async Task<CaseDataDetails> GetCaseDataDetailsAsync(int CaDataGroupId, string expectedGroupDesc)
         {
-            string jsonData = await _cityworks.RetrieveCaseDataDetailFromServer(CaDataGroupId);
+            string jsonData = await _cityworks.RetrieveCaseDataDetailFromServerAsync(CaDataGroupId);
 
             try
             {
@@ -52,9 +52,9 @@ namespace Building_Permit_Monitor.Cityworks
             }
         }
 
-        public async Task<CaseDataGroups> GetCaseDataGroups(int CaObjId)
+        public async Task<CaseDataGroups> GetCaseDataGroupsAsync(int CaObjId)
         {
-            string jsonData = await _cityworks.RetrieveCaseDataGroupFromServer(CaObjId);
+            string jsonData = await _cityworks.RetrieveCaseDataGroupFromServerAsync(CaObjId);
 
             try
             {
@@ -83,9 +83,9 @@ namespace Building_Permit_Monitor.Cityworks
             }
         }
 
-        public async Task<List<Search>> GetSavedSearchesForUser(string employeeName)
+        public async Task<List<Search>> GetSavedSearchesForUserAsync(string employeeName)
         {
-            string jsonData = await _cityworks.RetrieveSavedSearchesFromServer();
+            string jsonData = await _cityworks.RetrieveSavedSearchesFromServerAsync();
 
             try
             {
@@ -114,9 +114,9 @@ namespace Building_Permit_Monitor.Cityworks
             }
         }
 
-        public async Task<SearchResults> GetSearchResults(int searchIdNumber)
+        public async Task<SearchResults> GetSearchResultsAsync(int searchIdNumber)
         {
-            string jsonData = await _cityworks.RetrieveSearchResultsFromServer(searchIdNumber);
+            string jsonData = await _cityworks.RetrieveSearchResultsFromServerAsync(searchIdNumber);
 
             try
             {
@@ -145,11 +145,11 @@ namespace Building_Permit_Monitor.Cityworks
             }
         }
 
-        public async Task PopulateSpreadsheetRows(List<SpreadsheetRow> rows)
+        public async Task PopulateSpreadsheetRowsAsync(List<SpreadsheetRow> rows)
         {
             foreach (SpreadsheetRow row in rows)
             {
-                await PopulateSpreadsheetRow(row);
+                await PopulateSpreadsheetRowAsync(row);
             }
             return;
         }
@@ -187,16 +187,16 @@ namespace Building_Permit_Monitor.Cityworks
             return employeeSearches;
         }
 
-        private async Task PopulateSpreadsheetRow(SpreadsheetRow row)
+        private async Task PopulateSpreadsheetRowAsync(SpreadsheetRow row)
         {
             // Holds data group id numbers for each detail group.
-            CaseDataGroups dataGroups = await GetCaseDataGroups(row.CaObjectId);
+            CaseDataGroups dataGroups = await GetCaseDataGroupsAsync(row.CaObjectId);
 
             // Each group is accessed via it's group id number;
-            CaseDataDetails buildingUseDetails = await GetCaseDataDetails(dataGroups.BuildingUseID, GroupDesc.UseOfBuilding);
-            CaseDataDetails numbeOfUnitsDetails = await GetCaseDataDetails(dataGroups.NumberOfUnitsID, GroupDesc.NumberOfUnits);
-            CaseDataDetails classOfWorkDetails = await GetCaseDataDetails(dataGroups.ClassOfWorkID, GroupDesc.ClassOfWork);
-            CaseDataDetails projectValueDetails = await GetCaseDataDetails(dataGroups.ProjectValueID, GroupDesc.ProjectValuation);
+            CaseDataDetails buildingUseDetails = await GetCaseDataDetailsAsync(dataGroups.BuildingUseID, GroupDesc.UseOfBuilding);
+            CaseDataDetails numbeOfUnitsDetails = await GetCaseDataDetailsAsync(dataGroups.NumberOfUnitsID, GroupDesc.NumberOfUnits);
+            CaseDataDetails classOfWorkDetails = await GetCaseDataDetailsAsync(dataGroups.ClassOfWorkID, GroupDesc.ClassOfWork);
+            CaseDataDetails projectValueDetails = await GetCaseDataDetailsAsync(dataGroups.ProjectValueID, GroupDesc.ProjectValuation);
 
             // The data is then shoved into the row object.
             row.BuildingUse = buildingUseDetails.BuildingUse;

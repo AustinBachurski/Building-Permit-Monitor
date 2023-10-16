@@ -18,12 +18,12 @@ namespace Building_Permit_Monitor.CityworksAPI
         private DateTime _tokenExpiration = DateTime.Now;
         private string? _token;
 
-        public async Task<string> RetrieveCaseDataDetailFromServer(int CaDataGroupId)
+        public async Task<string> RetrieveCaseDataDetailFromServerAsync(int CaDataGroupId)
         {
             try
             {
                 string requestMessage = $"{baseURL}Services/Pll/CaseDataDetail/SearchObject"
-                    + $"?data={{CaDataGroupId:{CaDataGroupId}}}&token={await Token()}";
+                    + $"?data={{CaDataGroupId:{CaDataGroupId}}}&token={await TokenAsync()}";
 
                 HttpResponseMessage response = await httpClient.GetAsync(requestMessage);
 
@@ -45,12 +45,12 @@ namespace Building_Permit_Monitor.CityworksAPI
             }
         }
 
-        public async Task<string> RetrieveCaseDataGroupFromServer(int CaObjId)
+        public async Task<string> RetrieveCaseDataGroupFromServerAsync(int CaObjId)
         {
             try
             {
                 string requestMessage = $"{baseURL}Services/Pll/CaseDataGroup/ByCaObjectId"
-                    + $"?data={{CaObjectId:{CaObjId}}}&token={await Token()}";
+                    + $"?data={{CaObjectId:{CaObjId}}}&token={await TokenAsync()}";
 
                 HttpResponseMessage response = await httpClient.GetAsync(requestMessage);
 
@@ -72,11 +72,11 @@ namespace Building_Permit_Monitor.CityworksAPI
             }
         }
 
-        public async Task<string> RetrieveSavedSearchesFromServer()
+        public async Task<string> RetrieveSavedSearchesFromServerAsync()
         {
             try
             {
-                string requestMessage = $"{baseURL}Services/Ams/Search/PllSaved?token={await Token()}";
+                string requestMessage = $"{baseURL}Services/Ams/Search/PllSaved?token={await TokenAsync()}";
 
                 HttpResponseMessage response = await httpClient.GetAsync(requestMessage);
                 if (response.IsSuccessStatusCode)
@@ -97,12 +97,12 @@ namespace Building_Permit_Monitor.CityworksAPI
             }
         }
 
-        public async Task<string> RetrieveSearchResultsFromServer(int searchIdNumber)
+        public async Task<string> RetrieveSearchResultsFromServerAsync(int searchIdNumber)
         {
             try
             {
                 string requestMessage = $"{baseURL}Services/Ams/Search/Execute"
-                    + $"?data={{\"SearchId\":{searchIdNumber}}}&token={await Token()}";
+                    + $"?data={{\"SearchId\":{searchIdNumber}}}&token={await TokenAsync()}";
 
                 HttpResponseMessage response = await httpClient.GetAsync(requestMessage);
 
@@ -125,7 +125,7 @@ namespace Building_Permit_Monitor.CityworksAPI
             }
         }
 
-        private async Task<string> RetrieveTokenFromServer()
+        private async Task<string> RetrieveTokenFromServerAsync()
         {
             try
             {
@@ -161,19 +161,19 @@ namespace Building_Permit_Monitor.CityworksAPI
             }
         }
 
-        private async Task<string> Token()
+        private async Task<string> TokenAsync()
         {
             if (_tokenExpiration > DateTime.Now)
             {
                 return _token;
             }
-            await UpdateToken();
+            await UpdateTokenAsync();
             return _token;
         }
 
-    private async Task UpdateToken()
+    private async Task UpdateTokenAsync()
         {
-            string serverResponse = await RetrieveTokenFromServer();
+            string serverResponse = await RetrieveTokenFromServerAsync();
 
             try
             {

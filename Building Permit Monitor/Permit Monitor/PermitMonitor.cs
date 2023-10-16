@@ -39,16 +39,16 @@ namespace Building_Permit_Monitor.Permit_Monitor
             _savedSearchID = newID;
         }
 
-        public async Task<int> CheckForWorkToDo()
+        public async Task<int> CheckForWorkToDoAsync()
         {
-            _unmappedPermits =  await CheckForUnmappedPermits();
+            _unmappedPermits =  await CheckForUnmappedPermitsAsync();
 
             return _unmappedPermits.Count;
         }
 
-        public async Task DisplaySavedSearchesForUser()
+        public async Task DisplaySavedSearchesForUserAsync()
         {
-            List<Search> searches = await _cityworks.GetSavedSearchesForUser(_employeeName);
+            List<Search> searches = await _cityworks.GetSavedSearchesForUserAsync(_employeeName);
 
             string searchText = "";
 
@@ -79,9 +79,9 @@ namespace Building_Permit_Monitor.Permit_Monitor
             }
         }
 
-        public async Task DoWork()
+        public async Task DoWorkAsync()
         {
-            await _cityworks.PopulateSpreadsheetRows(_unmappedPermits);
+            await _cityworks.PopulateSpreadsheetRowsAsync(_unmappedPermits);
             await Console.Out.WriteLineAsync("Data gathered, pushing to sheet.");
 
             DisplayRowsForUserValidation(); // May set _abort to true.
@@ -95,9 +95,9 @@ namespace Building_Permit_Monitor.Permit_Monitor
             SendToast(OnToastClick.NoAction, "Update aborted.");
         }
 
-        private async Task<List<SpreadsheetRow>> CheckForUnmappedPermits()
+        private async Task<List<SpreadsheetRow>> CheckForUnmappedPermitsAsync()
         {
-            SearchResults issuedPermits = await _cityworks.GetSearchResults(_savedSearchID);
+            SearchResults issuedPermits = await _cityworks.GetSearchResultsAsync(_savedSearchID);
             string[] completedPermits = _excel.GetCompletedPermitNumbers();
 
             List<SpreadsheetRow> _unmappedPermits = new List<SpreadsheetRow>();
