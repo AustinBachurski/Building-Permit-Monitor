@@ -1,4 +1,4 @@
-﻿namespace Building_Permit_Monitor.JSON_Objects
+namespace Building_Permit_Monitor.JSON_Objects
 {
     public class CaseDataDetails
     {
@@ -16,7 +16,7 @@
             {
                 CaseData? entry = Value.FirstOrDefault(entry => entry.GroupDesc == GroupDesc.UseOfBuilding);
                 
-                if (entry != null)
+                if (entry != null && entry.ListValue != null)
                 {
                     if (!string.IsNullOrEmpty(entry.ListValue))
                     {
@@ -35,7 +35,7 @@
             {
                 CaseData? entry = Value.FirstOrDefault(entry => entry.GroupDesc == GroupDesc.NumberOfUnits);
 
-                if (entry != null)
+                if (entry != null && entry.TextValue != null)
                 {
                     if (!string.IsNullOrEmpty(entry.TextValue))
                     {
@@ -54,7 +54,7 @@
             {
                 CaseData? entry = Value.FirstOrDefault(entry => entry.GroupDesc == GroupDesc.ClassOfWork);
 
-                if (entry != null)
+                if (entry != null && entry.ListValue != null)
                 {
                     if (!string.IsNullOrEmpty(entry.ListValue))
                     {
@@ -73,7 +73,7 @@
             {
                 CaseData? entry = Value.FirstOrDefault(entry => entry.GroupDesc == GroupDesc.ProjectValuation);
 
-                if (entry != null)
+                if (entry != null && entry.Value != null)
                 {
                     return (double)entry.Value;
                 }
