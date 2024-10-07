@@ -1,4 +1,4 @@
-﻿namespace Building_Permit_Monitor.JSON_Objects
+namespace Building_Permit_Monitor.JSON_Objects
 {
     public class CaseDataDetails
     {
