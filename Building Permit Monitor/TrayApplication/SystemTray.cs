@@ -5,6 +5,7 @@ using Building_Permit_Monitor.CityworksAPI;
 using Building_Permit_Monitor.ExcelAccess;
 using Building_Permit_Monitor.TrayApplication;
 using Building_Permit_Monitor.SearchIdWindow;
+using Building_Permit_Monitor.CityworksSearchData;
 
 namespace Building_Permit_Monitor
 {
@@ -17,7 +18,8 @@ namespace Building_Permit_Monitor
             _monitor = new PermitMonitor(
                             new CityworksData(
                                 new LiveCityworksAPI("https://cityworks.ci.kalispell.mt.us/Cityworks/")),
-                                new Excel("K:\\Building Permit Tracking\\Building Permits.xlsx"));
+                                new Excel("K:\\Building Permit Tracking\\Building Permits.xlsx"),
+                                new SearchData("userData.txt"));
 
             InitializeComponent();
 

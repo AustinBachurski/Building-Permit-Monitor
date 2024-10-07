@@ -3,6 +3,7 @@ using Building_Permit_Monitor.TrayApplication;
 using Building_Permit_Monitor.CityworksAPI;
 using Building_Permit_Monitor.ExcelAccess;
 using Building_Permit_Monitor.Permit_Monitor;
+using Building_Permit_Monitor.DataValidationWindow;
 using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace Building_Permit_Monitor.DataValidation
@@ -13,7 +14,8 @@ namespace Building_Permit_Monitor.DataValidation
         SpreadsheetRow _rowData;
         PermitMonitor _process;
 
-        public ValidationWindow(SpreadsheetRow row, int current, int total, PermitMonitor process)
+        public ValidationWindow(SpreadsheetRow row, 
+                int current, int total, PermitMonitor process)
         {
             _CaObjectId = row.CaObjectId;
             _rowData = row;
@@ -23,15 +25,36 @@ namespace Building_Permit_Monitor.DataValidation
 
             Text = $"Data Validation for permit {current} of {total}";
 
-            if (row.BuildingUse == "No data entered in Cityworks.") { label_title_BuildingUse.ForeColor = Color.Red; }
+            if (row.BuildingUse == "No data entered in Cityworks."
+                    || !Values.IsValidBuildingUse(row.BuildingUse))
+            {
+                label_title_BuildingUse.ForeColor = Color.Red;
+            }
+
             int _unused_;
-            if (!int.TryParse(row.NumberOfUnits, out _unused_)) { label_title_NumberOfUnits.ForeColor = Color.Red; }
-            if (row.ClassOfWork == "No data entered in Cityworks.") { label_title_ClassOfWork.ForeColor = Color.Red; }
-            if (row.CoordinateX == 0 || row.CoordinateY == 0) { label_title_Coordinates.ForeColor = Color.Red; }
+            if (!int.TryParse(row.NumberOfUnits, out _unused_))
+            {
+                label_title_NumberOfUnits.ForeColor = Color.Red;
+                label_NumberOfUnits.Text = "0";
+            }
+            else
+            {
+                label_NumberOfUnits.Text = row.NumberOfUnits;
+            }
+
+            if (row.ClassOfWork == "No data entered in Cityworks."
+                    || !Values.IsValidClassOfWork(row.ClassOfWork))
+            {
+                label_title_ClassOfWork.ForeColor = Color.Red;
+            }
+
+            if (row.CoordinateX == 0 || row.CoordinateY == 0)
+            {
+                label_title_Coordinates.ForeColor = Color.Red;
+            }
 
             label_PermitNumber.Text = row.PermitNumber;
             label_BuildingUse.Text = row.BuildingUse;
-            label_NumberOfUnits.Text = row.NumberOfUnits;
             label_ClassOfWork.Text = row.ClassOfWork;
             label_DateIssued.Text = row.DateIssued;
             label_ProjectValueation.Text = $"{row.ProjectValue:C}";

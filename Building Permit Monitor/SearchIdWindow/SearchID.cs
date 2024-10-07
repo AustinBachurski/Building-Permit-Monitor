@@ -22,7 +22,7 @@ namespace Building_Permit_Monitor.SearchIdWindow
 
             if (int.TryParse(textBox_newID.Text, out newID))
             {
-                _monitor.ChangeSearchID(newID);
+                updateID(newID);
                 Close();
                 return;
             }
@@ -51,12 +51,23 @@ namespace Building_Permit_Monitor.SearchIdWindow
 
                 if (int.TryParse(textBox_newID.Text, out newID))
                 {
-                    _monitor.ChangeSearchID(newID);
+                    updateID(newID);
                     Close();
                     return;
                 }
                 SendToast(OnToastClick.NoAction, $"Invalid Entry: {textBox_newID.Text}");
                 return;
+            }
+        }
+
+        private void updateID(int ID)
+        {
+            _monitor.ChangeSearchID(ID);
+
+            using (StreamWriter file = new StreamWriter(_monitor.DataFile))
+            {
+                file.WriteLine(_monitor.EmployeeName);
+                file.WriteLine(_monitor.SearchID);
             }
         }
     }

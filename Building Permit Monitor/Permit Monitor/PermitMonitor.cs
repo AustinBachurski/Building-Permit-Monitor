@@ -5,6 +5,8 @@ using Building_Permit_Monitor.JSON_Objects;
 using Building_Permit_Monitor.DataValidation;
 using Building_Permit_Monitor.TrayApplication;
 using Building_Permit_Monitor.InfoWindow;
+using Building_Permit_Monitor.CityworksSearchData;
+using Windows.Media.AppBroadcasting;
 
 namespace Building_Permit_Monitor.Permit_Monitor
 {
@@ -12,22 +14,25 @@ namespace Building_Permit_Monitor.Permit_Monitor
     {
         bool _abort = false;
         CityworksData _cityworks;
+        string _dataFile;
         string _employeeName;
         Excel _excel;
         int _savedSearchID;
         List<SpreadsheetRow> _unmappedPermits;
         
-        public PermitMonitor(CityworksData cityworks, Excel excel)
+        public PermitMonitor(CityworksData cityworks, Excel excel, SearchData data)
         {
             _cityworks = cityworks;
-            _employeeName = "BACHURSKI, AUSTIN ";
+            _dataFile = data.DataFile;
+            _employeeName = data.Employee;
             _excel = excel;
-            _savedSearchID = 1041;
+            _savedSearchID = data.SearchID;
             _unmappedPermits = new List<SpreadsheetRow>();
         }
 
         public string EmployeeName { get { return _employeeName; } set { _employeeName = value; } }
         public int SearchID { get { return _savedSearchID; } set { _savedSearchID = value; } }
+        public string DataFile { get { return _dataFile; } }
 
         public void Abort()
         {

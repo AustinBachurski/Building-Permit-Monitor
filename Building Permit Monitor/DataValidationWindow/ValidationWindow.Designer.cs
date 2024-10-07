@@ -351,7 +351,7 @@
             Controls.Add(comboBox_ClassOfWork);
             Controls.Add(comboBox_BuildingUse);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Location = new Point(1227, 1910);
+            Location = new Point(1227, 1880);
             Margin = new Padding(3, 4, 3, 4);
             Name = "ValidationWindow";
             StartPosition = FormStartPosition.Manual;
