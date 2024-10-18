@@ -35,11 +35,12 @@ namespace Building_Permit_Monitor.DataValidation
             if (!int.TryParse(row.NumberOfUnits, out _unused_))
             {
                 label_title_NumberOfUnits.ForeColor = Color.Red;
-                label_NumberOfUnits.Text = "0";
+                label_NumberOfUnits.Text = "No data entered in Cityworks.";
+                textBox_NumberOfUnits.Text = "0";
             }
             else
             {
-                label_NumberOfUnits.Text = row.NumberOfUnits;
+                textBox_NumberOfUnits.Text = row.NumberOfUnits;
             }
 
             if (row.ClassOfWork == "No data entered in Cityworks."
